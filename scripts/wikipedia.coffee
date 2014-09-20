@@ -74,8 +74,6 @@ findBestParagraph = (paragraphs) ->
   # if non-letters are the majority in the paragraph, skip it
   if text.replace(/[^a-zA-Z]/g, '').length < 35
     findBestParagraph(paragraphs.slice(1))
-  else if text.length > 1600
-    text.substring(0, 1595) + "..."
   else
     text
 
