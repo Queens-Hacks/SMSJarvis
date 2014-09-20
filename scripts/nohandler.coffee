@@ -4,4 +4,4 @@
 
 module.exports = (robot) ->
   robot.catchAll (msg) ->
-    msg.send "I'm sorry, I don't know what that means."
+    msg.send "I'm sorry, I don't know how to respond to that."

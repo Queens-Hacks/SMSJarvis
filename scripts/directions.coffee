@@ -8,7 +8,8 @@
 #   None
 #
 # Commands:
-#   hubot get directions "<origin>" "<destination>" -- Shows directions between these locations
+#   directions "<origin>" "<destination>"
+#   navigate "<origin>" "<destination>"
 #
 # Author:
 #   sleekslush
@@ -67,11 +68,11 @@ parse_directions = (body) ->
 
     
   x = final_directions.join("\n")
-  console.log(x.length)
+  #console.log(x.length)
   return x
     
 module.exports = (robot) ->
-  robot.respond /(get )?directions "((?:[^\\"]+|\\.)*)" "((?:[^\\"]+|\\.)*)"$/i, (msg) ->
+  robot.respond /(directions|navigate) "((?:[^\\"]+|\\.)*)" "((?:[^\\"]+|\\.)*)"$/i, (msg) ->
     [origin, destination] = msg.match[2..3]
 
     msg

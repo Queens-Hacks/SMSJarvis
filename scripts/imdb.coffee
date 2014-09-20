@@ -9,7 +9,7 @@
 #   None
 #
 # Commands:
-#   hubot imdb days of future past
+#   imdb <movie/tv show/episode name>
 #
 # Author:
 #   pR0Ps
