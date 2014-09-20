@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   navigate "<origin>" "<destination>"
+#   navigate <origin>...<destination>
 #
 # Author:
 #   sleekslush
@@ -71,7 +71,7 @@ parse_directions = (body) ->
   return x
     
 module.exports = (robot) ->
-  robot.respond /navigate "((?:[^\\"]+|\\.)*)" "((?:[^\\"]+|\\.)*)"$/i, (msg) ->
+  robot.respond /navigate (.+)\b *\.\.\. *\b(.+)/i, (msg) ->
     [origin, destination] = msg.match[1..2]
 
     msg
