@@ -25,7 +25,7 @@ parse_directions = (body) ->
 
   for leg in first_route.legs
     do (leg) ->
-      final_directions.push leg.start_address + " -> " + leg.end_address
+      final_directions.push leg.start_address + " -> " + leg.end_address + ":"
   
       for step in leg.steps
         do (step) ->
