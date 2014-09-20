@@ -9,7 +9,7 @@
 #   These commands are grabbed from comment blocks at the top of each file.
 
 module.exports = (robot) ->
-  robot.respond /(hello|hi|hey|yo|sup|good|greetings).*/i, (msg) ->
+  robot.respond /(hello|hi|hey|yo|sup|good evening|good morning|greetings)\b.*/i, (msg) ->
     msg.send """Greetings human, I'm Jarvis, your SMS assistant.
                 Ask me what I can do by sending me a '?'"""
 
