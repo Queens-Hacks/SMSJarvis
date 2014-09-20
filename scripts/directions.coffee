@@ -8,7 +8,6 @@
 #   None
 #
 # Commands:
-#   directions "<origin>" "<destination>"
 #   navigate "<origin>" "<destination>"
 #
 # Author:
@@ -72,8 +71,8 @@ parse_directions = (body) ->
   return x
     
 module.exports = (robot) ->
-  robot.respond /(directions|navigate) "((?:[^\\"]+|\\.)*)" "((?:[^\\"]+|\\.)*)"$/i, (msg) ->
-    [origin, destination] = msg.match[2..3]
+  robot.respond /navigate "((?:[^\\"]+|\\.)*)" "((?:[^\\"]+|\\.)*)"$/i, (msg) ->
+    [origin, destination] = msg.match[1..2]
 
     msg
         .http("http://maps.googleapis.com/maps/api/directions/json")

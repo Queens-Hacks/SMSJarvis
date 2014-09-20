@@ -3,11 +3,11 @@
 #
 # Commands:
 #   define <query> - definition
-#   urban define <query> - Urban dictionary definition
+#   udefine <query> - Urban dictionary definition
 #
 
 module.exports = (robot) ->
-  robot.respond /(urban |u)?define (.+)/i, (msg) ->
+  robot.respond /(u)?define (.+)/i, (msg) ->
     word = msg.match[2]
     if msg.match[1]
       msg.http("http://api.urbandictionary.com/v0/define?term=#{word}")
