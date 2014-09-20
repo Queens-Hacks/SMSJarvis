@@ -37,8 +37,11 @@ darkSkyMe = (msg, lat, lng, cb) ->
   url = "https://api.forecast.io/forecast/#{process.env.HUBOT_DARK_SKY_API_KEY}/#{lat},#{lng}/?units=si"
   msg.http(url)
     .get() (err, res, body) ->
-      result = JSON.parse(body)
+      if body.search(/forbidden/i) > -1
+        cb "API access forbidden - Check the API key"
+        return
 
+      result = JSON.parse(body)
       if result.error
         cb "#{result.error}"
         return
