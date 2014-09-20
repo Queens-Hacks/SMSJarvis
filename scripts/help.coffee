@@ -28,8 +28,11 @@ module.exports = (robot) ->
     cmds = cmds.map (cmd) ->
       cmd = cmd.replace /hubot/ig, robot.name
       cmd = cmd.replace new RegExp("^#{robot.name}"), prefix
-      # Only display extended help for help helps (yo dawg)
-      cmd.replace(/(\?.*)|(.+) - .*/i, "$1$2")
+      if not filter
+        # Only display extended help for help helps (yo dawg)
+        cmd.replace(/(\?.*)|(.+) - .*/i, "$1$2")
+      else
+        cmd
 
     emit = cmds.join "\n"
 
