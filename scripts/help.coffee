@@ -9,6 +9,10 @@
 #   These commands are grabbed from comment blocks at the top of each file.
 
 module.exports = (robot) ->
+  robot.respond /(hello|hi|hey|yo|sup|good|greetings).*/i, (msg) ->
+    msg.send """Greetings human, I'm Jarvis, your SMS assistant.
+                Ask me what I can do by sending me a '?'"""
+
   robot.respond /\?\s*(.*)?$/i, (msg) ->
     cmds = robot.helpCommands()
     filter = msg.match[1]
