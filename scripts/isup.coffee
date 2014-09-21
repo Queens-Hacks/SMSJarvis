@@ -8,13 +8,13 @@
 #   None
 #
 # Commands:
-#   ping <domain> - Checks if <domain> is up
+#   isup <domain> - Checks if <domain> is up
 #
 # Author:
 #   jmhobbs
 
 module.exports = (robot) ->
-  robot.respond /ping (?:http\:\/\/)?(.*)/i, (msg) ->
+  robot.respond /isup (?:http\:\/\/)?(.*)/i, (msg) ->
     domain = msg.match[1]
     msg.http("http://isitup.org/#{domain}.json")
       .header('User-Agent', 'Hubot')
