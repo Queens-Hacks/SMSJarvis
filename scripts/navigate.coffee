@@ -8,10 +8,19 @@
 #   None
 #
 # Commands:
-#   nav <origin>...<destination>
+#   nav <origin> to <destination> - Find a route (the 'to' can changed to a '...')
 #
 # Author:
 #   sleekslush
+
+routeMe = (msg, origin, destination) ->
+  msg.http("http://maps.googleapis.com/maps/api/directions/json")
+    .query({
+      origin: origin,
+      destination: destination,
+      sensor: false})
+    .get() (err, res, body) ->
+      msg.send parse_directions body
 
 parse_directions = (body) ->
   directions = JSON.parse body
@@ -65,19 +74,14 @@ parse_directions = (body) ->
 
           final_directions.push instructions + " (#{step.distance.text})"
 
-    
   x = final_directions.join("\n")
   return x
-    
+
 module.exports = (robot) ->
   robot.respond /nav(?:igate)? (.+)\b *\.\.\. *\b(.+)/i, (msg) ->
     [origin, destination] = msg.match[1..2]
+    routeMe(msg, origin, destination)
 
-    msg
-        .http("http://maps.googleapis.com/maps/api/directions/json")
-        .query
-            origin: origin,
-            destination: destination,
-            sensor: false
-        .get() (err, res, body) ->
-            msg.send parse_directions body
+  robot.respond /nav(?:igate)?(?: from)? (.+)\b to \b(.+)/i, (msg) ->
+    [origin, destination] = msg.match[1..2]
+    routeMe(msg, origin, destination)
