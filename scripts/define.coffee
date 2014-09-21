@@ -21,7 +21,10 @@ module.exports = (robot) ->
       msg.http("http://glosbe.com/gapi/translate?from=eng&dest=eng&format=json&phrase=#{word}")
         .get() (err, res, body) ->
           results = JSON.parse(body)
-          try
-            msg.send results["tuc"][0]["meanings"][0]["text"]
-          catch
-            msg.send "No definition found"
+          if results.tuc
+            for obj in results.tuc
+              try
+                msg.send obj["meanings"][0]["text"]
+                return
+              catch
+          msg.send "No definition found"
